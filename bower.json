@@ -1,5 +1,5 @@
 {
-  "name": "coffeescript-app-skeleton",
+  "name": "eco-sim",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -8,6 +8,7 @@
     "tests"
   ],
   "dependencies": {
-    "lodash": "~3.3.x"
+    "lodash": "~3.3.x",
+    "angular": "~1.4.3"
   }
 }
