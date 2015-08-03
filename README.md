@@ -1,7 +1,6 @@
-# EcoSim
+# eco-sim
 
-Angular EcoSim.
-
+A simple ecological simulator.
 
 ## Installing dependencies
 
