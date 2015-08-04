@@ -9,6 +9,7 @@
   ],
   "dependencies": {
     "lodash": "~3.3.x",
-    "angular": "~1.4.3"
+    "angular": "~1.4.3",
+    "undermore": "~1.9.0"
   }
 }

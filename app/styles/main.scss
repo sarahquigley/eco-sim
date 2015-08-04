@@ -1,6 +1,17 @@
 // bower:scss
 // endbower
 
-body{
-  font-family: Verdana, sans-serif;
-}
+#ecosystem{
+	height:640px;
+	width:800px;
+	border:1px solid black;
+	position:relative;
+ }
+
+.creature{
+	height:4px;
+	width:4px;
+	border-radius:2px;
+	background-color:black;
+	position:absolute;
+ }
