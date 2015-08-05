@@ -4,8 +4,8 @@ class Creature
 
   move: () =>
     if @energy > 0
-      @position.x +=  Math.round(Math.random() * (2) - 1)
-      @position.y +=  Math.round(Math.random() * (2) - 1)
+      position = @_generate_position()
+      @position = position
       @energy -= 0.1
     else
       @energy -= 0.01
@@ -22,14 +22,10 @@ class Creature
 
   reproduce: (ecosystem) =>
     if @energy > @reproductive_energy
-      position = {
-        x: Math.round(@position.x + Math.random() * 4 - 2).
-        y: Math.round(@position.y + Math.random() * 4 - 2),
-      }
-      if !_.any(ecosystem.creatures, {position: position})
-        creature = ecosystem.add_creature(position, @type)
-        @energy -= @reproductive_energy
-        creature
+      position = @_generate_position(2)
+      creature = ecosystem.add_creature(position, @type)
+      @energy -= @reproductive_energy
+      creature
 
   die: (ecosystem) =>
     ecosystem.delete_creature(@)
@@ -41,21 +37,33 @@ class Creature
     @eat(ecosystem)
     @reproduce(ecosystem)
 
+  _generate_position: (radius = 1) =>
+    position = {
+      x: @position.x + Math.round((Math.random() * 2 * radius) - radius),
+      y: @position.y + Math.round((Math.random() * 2 * radius) - radius),
+    }
+
 
 class Ecosystem
-  constructor: (@creatures = {}) ->
+  constructor: (@creatures = {}, @width = 600, @height = 600) ->
 
   add_creature: (position, type, prey) =>
     creature = new Creature(position, type, prey)
     @creatures[creature.id] = creature
 
+  population_size: ->
+    _.keys(@creatures).length
+
   delete_creature: (creature) =>
     delete @creatures[creature.id]
 
   run: () =>
+    before = new Date().getTime()
     _.each @creatures, (creature) ->
       creature.run_lifecycle(@)
     , @
+    after = new Date().getTime()
+    @loop_latency = after - before
 
 
 window.Ecosystem = Ecosystem
