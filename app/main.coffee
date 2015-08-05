@@ -28,7 +28,6 @@ angular.module('EcoSim', [
     creature = $scope.ecosystem.add_creature(position, $scope.creature_type.type, $scope.creature_type.prey)
 
   $scope.start = () ->
-    $scope.ecosystem.run()
     $scope.interval = $interval($scope.ecosystem.run, 10)
 
   $scope.stop = () ->
@@ -38,4 +37,6 @@ angular.module('EcoSim', [
   $scope.reset = () ->
     $scope.stop()
     $scope.ecosystem = new Ecosystem()
+
+  window.ecosystem = $scope.ecosystem
 ])

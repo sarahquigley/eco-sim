@@ -2,8 +2,6 @@
 // endbower
 
 #ecosystem{
-	height:640px;
-	width:800px;
 	border:1px solid black;
 	position:relative;
  }
@@ -14,4 +12,5 @@
 	border-radius:2px;
 	background-color:black;
 	position:absolute;
+  opacity: 0.5;
  }
