@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html ng-app="EcoSim">
+  <head>
+    <!-- build:css(app) styles/vendor.min.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css(.dev) styles/main.min.css -->
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+
+  <body ng-controller="EcoSimCtrl">
+    <div id="page-container">
+      <div>
+        <h1>EcoSim</h1>
+        <p>Loop latency: {{ecosystem.loop_latency}}ms</p>
+        <p>Population: {{ecosystem.population_size()}}</p>
+        <p>Time per pop: {{ecosystem.loop_latency / ecosystem.population_size()}}</p>
+        <p>Current Creature Type:
+          <select ng-options="type for (type, creature_type) in creature_types" ng-model="creature_type">
+          </select>
+        </p>
+        <button ng-click="start()">Start</button>
+        <button ng-click="stop()">Stop</button>
+        <button ng-click="reset()">Clear</button>
+      </div>
+
+      <div id="ecosystem" ng-click="add_creature($event)" style="width: {{ecosystem.width}}px; height: {{ecosystem.height}}px">
+        <div ng-repeat="creature in ecosystem.creatures">
+          <div class="creature" style="background-color: {{creature.type}}; top:{{creature.position.y}}px; left:{{creature.position.x}}px"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- build:js(app) scripts/vendor.min.js -->
+    <!-- bower:js -->
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/undermore/bin/undermore.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js(.dev) scripts/main.min.js -->
+    <script type="text/javascript" src="main.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>
